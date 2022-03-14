@@ -1,21 +1,33 @@
-import React, { Component } from 'react'
-import Playlist from '../Playlist/Playlist'
-import SearchBar from '../SearchBar/SearchBar'
-import SearchResults from '../SearchResults/SearchResults'
-import './App.css'
-const track = [
+import React, { Component } from 'react';
+import Playlist from '../Playlist/Playlist';
+import SearchBar from '../SearchBar/SearchBar';
+import SearchResults from '../SearchResults/SearchResults';
+import './App.css';
+const tracks = [
 	{
 		name: 'barbara streisand',
 		artist: 'duck sauce',
 		album: 'justajoke',
-		id: 'jk',
+		id: '1',
 	},
-]
+	{
+		name: 'apple sauve',
+		artist: 'apple deuces',
+		album: 'justajoke',
+		id: '2',
+	},
+	{
+		name: 'barbara streisand',
+		artist: 'duck sauce',
+		album: 'justajoke',
+		id: '3',
+	},
+];
 export default class App extends Component {
 	constructor(props) {
-		super(props)
+		super(props);
 
-		this.state = { SearchResults: track }
+		this.state = { SearchResults: tracks };
 	}
 	render() {
 		return (
@@ -36,6 +48,6 @@ export default class App extends Component {
 					</div>
 				</div>
 			</div>
-		)
+		);
 	}
 }
