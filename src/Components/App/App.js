@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import Playlist from '../Playlist/Playlist';
-import SearchBar from '../SearchBar/SearchBar';
-import SearchResults from '../SearchResults/SearchResults';
-import './App.css';
+import React, { Component } from 'react'
+import Playlist from '../Playlist/Playlist'
+import SearchBar from '../SearchBar/SearchBar'
+import SearchResults from '../SearchResults/SearchResults'
+import './App.css'
 const tracks = [
 	{
 		name: 'barbara streisand',
@@ -22,12 +22,16 @@ const tracks = [
 		album: 'justajoke',
 		id: '3',
 	},
-];
+]
 export default class App extends Component {
 	constructor(props) {
-		super(props);
+		super(props)
 
-		this.state = { SearchResults: tracks };
+		this.state = {
+			searchResults: tracks,
+			playlistName: 'Favs',
+			playlistTracks: tracks,
+		}
 	}
 	render() {
 		return (
@@ -41,13 +45,16 @@ export default class App extends Component {
 					<div className='App-playlist'>
 						{/* <!-- Add a SearchResults component --> */}
 						<SearchResults
-							searchResults={this.state.SearchResults}
+							searchResults={this.state.searchResults}
 						/>
 						{/* <!-- Add a Playlist component --> */}
-						<Playlist />
+						<Playlist
+							playlistName={this.state.playlistName}
+							playlistTracks={this.state.playlistTracks}
+						/>
 					</div>
 				</div>
 			</div>
-		);
+		)
 	}
 }
