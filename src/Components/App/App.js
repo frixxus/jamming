@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import Playlist from '../Playlist/Playlist';
-import SearchBar from '../SearchBar/SearchBar';
-import SearchResults from '../SearchResults/SearchResults';
-import './App.css';
-const tracks = [
+import React, { Component } from 'react'
+import Playlist from '../Playlist/Playlist'
+import SearchBar from '../SearchBar/SearchBar'
+import SearchResults from '../SearchResults/SearchResults'
+import './App.css'
+const searchResultsTracks = [
 	{
 		name: 'barbara streisand',
 		artist: 'duck sauce',
@@ -17,41 +17,45 @@ const tracks = [
 		id: '2',
 	},
 	{
-		name: 'barbara streisand',
-		artist: 'duck sauce',
+		name: 'purple nurple',
+		artist: 'you',
 		album: 'justajoke',
 		id: '3',
 	},
-];
+]
 export default class App extends Component {
 	constructor(props) {
-		super(props);
+		super(props)
 
 		this.state = {
-			searchResults: tracks,
-			playlistName: 'Favs',
-			playlistTracks: tracks,
-		};
+			searchResults: searchResultsTracks,
+			playlistName: '',
+			playlistTracks: [],
+		}
 
-		this.addTrack = this.addTrack.bind(this);
-		this.removeTrack = this.removeTrack.bind(this);
+		this.addTrack = this.addTrack.bind(this)
+		this.removeTrack = this.removeTrack.bind(this)
 	}
 
 	addTrack = (track) => {
+		const playlistTracks = this.state.playlistTracks
 		if (
-			this.state.playlistTracks.find(
-				(savedTrack) => savedTrack.id === track.id
+			playlistTracks.find(
+				(playlistTrack) => playlistTrack.id === track.id
 			)
 		) {
-			return;
+			return
 		}
-		this.setState(this.searchResults.push(track));
-	};
+		playlistTracks.push(track)
+		this.setState({ playlistTracks: playlistTracks })
+	}
 
 	removeTrack = (track) => {
-		const newState = this.state.playlistTracks.filter(track);
-		this.setState({ searchResults: newState });
-	};
+		const newState = this.state.playlistTracks.filter(
+			(playlistTrack) => playlistTrack.id !== track.id
+		)
+		this.setState({ playlistTracks: newState })
+	}
 	render() {
 		return (
 			<div>
@@ -66,16 +70,16 @@ export default class App extends Component {
 						<SearchResults
 							searchResults={this.state.searchResults}
 							onAdd={this.addTrack}
-							onRemove={this.removeTrack}
 						/>
 						{/* <!-- Add a Playlist component --> */}
 						<Playlist
 							playlistName={this.state.playlistName}
 							playlistTracks={this.state.playlistTracks}
+							onRemove={this.removeTrack}
 						/>
 					</div>
 				</div>
 			</div>
-		);
+		)
 	}
 }
