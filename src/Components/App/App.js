@@ -32,6 +32,18 @@ export default class App extends Component {
 			playlistName: 'Favs',
 			playlistTracks: tracks,
 		}
+
+		this.addTrack = this.addTrack.bind(this)
+	}
+	addTrack = (track) => {
+		if (
+			this.state.playlistTracks.find(
+				(savedTrack) => savedTrack.id === track.id
+			)
+		) {
+			return
+		}
+		this.setState(this.searchResults.push(track))
 	}
 	render() {
 		return (
@@ -46,6 +58,7 @@ export default class App extends Component {
 						{/* <!-- Add a SearchResults component --> */}
 						<SearchResults
 							searchResults={this.state.searchResults}
+							onAdd={this.addTrack}
 						/>
 						{/* <!-- Add a Playlist component --> */}
 						<Playlist
