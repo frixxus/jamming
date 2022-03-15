@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import TrackList from '../TrackList/TrackList'
-import './Playlist.css'
+import React, { Component } from 'react';
+import TrackList from '../TrackList/TrackList';
+import './Playlist.css';
 
 export default class Playlist extends Component {
 	render() {
@@ -8,9 +8,13 @@ export default class Playlist extends Component {
 			<div class='Playlist'>
 				<input defaultValue='New Playlist' />
 				{/* <!-- Add a TrackList component --> */}
-				<TrackList tracks={this.props.playlistTracks} />
+				<TrackList
+					tracks={this.props.playlistTracks}
+					onRemove={this.props.removeTrack}
+					isRemoval={true}
+				/>
 				<button className='Playlist-save'>SAVE TO SPOTIFY</button>
 			</div>
-		)
+		);
 	}
 }
