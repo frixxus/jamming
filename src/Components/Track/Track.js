@@ -1,12 +1,21 @@
-import React, { Component } from 'react';
-import './Track.css';
+import React, { Component } from 'react'
+import './Track.css'
 
 export default class Track extends Component {
-	// isRemoval;
-	// renderAction = () => {
-	// 	const choice = this.isRemoval ? '+' : '-';
-	// 	return <button className='Track-action'>{choice}</button>;
-	// };
+	// isRemoval
+	constructor(props) {
+		super(props)
+
+		this.renderAction = this.renderAction.bind(this)
+		this.addTrack = this.addTrack.bind(this)
+	}
+	renderAction = () => {
+		const choice = this.props.isRemoval ? '+' : '-'
+		return <button className='Track-action'>{choice}</button>
+	}
+	addTrack = () => {
+		this.props.onAdd(this.props.track)
+	}
 
 	render() {
 		return (
@@ -18,8 +27,8 @@ export default class Track extends Component {
 						{this.props.track.artist} | {this.props.track.album}
 					</p>
 				</div>
-				{/* {this.renderAction} */}
+				{this.renderAction()}
 			</div>
-		);
+		)
 	}
 }
