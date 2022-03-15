@@ -35,6 +35,7 @@ export default class App extends Component {
 
 		this.addTrack = this.addTrack.bind(this)
 		this.removeTrack = this.removeTrack.bind(this)
+		this.updatePlaylistName = this.updatePlaylistName.bind(this)
 	}
 
 	addTrack = (track) => {
@@ -56,6 +57,11 @@ export default class App extends Component {
 		)
 		this.setState({ playlistTracks: newState })
 	}
+
+	updatePlaylistName = (name) => {
+		this.setState({ playlistName: name })
+	}
+
 	render() {
 		return (
 			<div>
@@ -76,6 +82,7 @@ export default class App extends Component {
 							playlistName={this.state.playlistName}
 							playlistTracks={this.state.playlistTracks}
 							onRemove={this.removeTrack}
+							onNameChange={this.updatePlaylistName}
 						/>
 					</div>
 				</div>
