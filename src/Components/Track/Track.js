@@ -7,10 +7,14 @@ export default class Track extends Component {
 		super(props)
 
 		this.renderAction = this.renderAction.bind(this)
+		this.addTrack = this.addTrack.bind(this)
 	}
 	renderAction = () => {
-		const choice = this.isRemoval ? '+' : '-'
+		const choice = this.props.isRemoval ? '+' : '-'
 		return <button className='Track-action'>{choice}</button>
+	}
+	addTrack = () => {
+		this.props.onAdd(this.props.track)
 	}
 
 	render() {
