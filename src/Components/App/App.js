@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import Playlist from '../Playlist/Playlist'
-import SearchBar from '../SearchBar/SearchBar'
-import SearchResults from '../SearchResults/SearchResults'
-import './App.css'
+import React, { Component } from 'react';
+import Playlist from '../Playlist/Playlist';
+import SearchBar from '../SearchBar/SearchBar';
+import SearchResults from '../SearchResults/SearchResults';
+import './App.css';
 const tracks = [
 	{
 		name: 'barbara streisand',
@@ -22,29 +22,36 @@ const tracks = [
 		album: 'justajoke',
 		id: '3',
 	},
-]
+];
 export default class App extends Component {
 	constructor(props) {
-		super(props)
+		super(props);
 
 		this.state = {
 			searchResults: tracks,
 			playlistName: 'Favs',
 			playlistTracks: tracks,
-		}
+		};
 
-		this.addTrack = this.addTrack.bind(this)
+		this.addTrack = this.addTrack.bind(this);
+		this.removeTrack = this.removeTrack.bind(this);
 	}
+
 	addTrack = (track) => {
 		if (
 			this.state.playlistTracks.find(
 				(savedTrack) => savedTrack.id === track.id
 			)
 		) {
-			return
+			return;
 		}
-		this.setState(this.searchResults.push(track))
-	}
+		this.setState(this.searchResults.push(track));
+	};
+
+	removeTrack = (track) => {
+		const newState = this.state.playlistTracks.filter(track);
+		this.setState({ searchResults: newState });
+	};
 	render() {
 		return (
 			<div>
@@ -59,6 +66,7 @@ export default class App extends Component {
 						<SearchResults
 							searchResults={this.state.searchResults}
 							onAdd={this.addTrack}
+							onRemove={this.removeTrack}
 						/>
 						{/* <!-- Add a Playlist component --> */}
 						<Playlist
@@ -68,6 +76,6 @@ export default class App extends Component {
 					</div>
 				</div>
 			</div>
-		)
+		);
 	}
 }
