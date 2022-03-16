@@ -37,6 +37,7 @@ export default class App extends Component {
 		this.removeTrack = this.removeTrack.bind(this)
 		this.updatePlaylistName = this.updatePlaylistName.bind(this)
 		this.savePlaylist = this.savePlaylist.bind(this)
+		this.search = this.search.bind(this)
 	}
 
 	addTrack = (track) => {
@@ -68,6 +69,10 @@ export default class App extends Component {
 		this.setState({ playlistName: 'New Playlist', playlistTracks: [] })
 	}
 
+	search = (searchTerm) => {
+		console.log(searchTerm)
+	}
+
 	render() {
 		return (
 			<div>
@@ -76,7 +81,7 @@ export default class App extends Component {
 				</h1>
 				<div className='App'>
 					{/* <!-- Add a SearchBar component --> */}
-					<SearchBar />
+					<SearchBar onSearch={this.search} />
 					<div className='App-playlist'>
 						{/* <!-- Add a SearchResults component --> */}
 						<SearchResults
