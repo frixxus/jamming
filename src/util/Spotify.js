@@ -21,6 +21,9 @@ const Spotify = {
 			window.location(accessURL)
 		}
 	},
+	search() {
+		const newPromise = new Promise()
+	},
 }
 
 export default Spotify
